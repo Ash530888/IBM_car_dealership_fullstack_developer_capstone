@@ -124,3 +124,33 @@ img{
     text-align:center;
     box-shadow: 2px 2px 3px #999;  
 }
+
+.inner-contact-container {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            max-width: 1200px;
+            margin: 0 auto;
+            background-color: #fff;
+            border: transparent;
+            border-radius: 8px;
+            overflow: hidden;
+        }
+        .left-column {
+            text-align: center;
+        }
+        .left-column img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+        .right-column {
+            padding: 40px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+        .contact-info p {
+            margin: 10px 0;
+            font-size: 18px;
+        }
+        
