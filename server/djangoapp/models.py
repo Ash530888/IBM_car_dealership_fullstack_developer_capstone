@@ -15,9 +15,10 @@ from django.core.validators import MaxValueValidator, MinValueValidator
 class CarMake(models.Model):
     name = models.CharField(max_length=100)
     description = models.TextField()
+    # Other fields as needed
 
     def __str__(self):
-        return "name: "+self.name+"\ndescription: "+self.description
+        return "name: "+self.name+"\n description: "+self.description
 
 # <HINT> Create a Car Model model `class CarModel(models.Model):`:
 # - Many-To-One relationship to Car Make model (One Car Make has many
@@ -30,23 +31,23 @@ class CarMake(models.Model):
 # - __str__ method to print a car make object
 
 class CarModel(models.Model):
-    make = models.ForeignKey(CarMake, on_delete=models.CASCADE)
-    dealer_id = models.IntegerField()
+    car_make = models.ForeignKey(CarMake, on_delete=models.CASCADE)  # Many-to-One relationship
     name = models.CharField(max_length=100)
     CAR_TYPES = [
         ('SEDAN', 'Sedan'),
         ('SUV', 'SUV'),
         ('WAGON', 'Wagon'),
         # Add more choices as required
-        ]
+    ]
     type = models.CharField(max_length=10, choices=CAR_TYPES, default='SUV')
     year = models.IntegerField(default=2023,
         validators=[
             MaxValueValidator(2023),
             MinValueValidator(2015)
         ])
+    # Other fields as needed
 
     def __str__(self):
-        print("name: "+self.name+"\ndealer: "+self.dealer_id+"\ntype: "+self.type)
+        print("name: "+self.name+"\n dealer: "+self.dealer_id+"\n type: "+self.type)
         print("Car Make:")
-        print(self.make)
+        print(self.car_make.name)
