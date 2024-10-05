@@ -44,5 +44,11 @@ def analyze_review_sentiments(text):
         print(f"Unexpected {err=}, {type(err)=}")
         print("Network exception occurred")
 
-# def post_review(data_dict):
-# Add code for posting review
+def post_review(data):
+    url = backend+"/insert_review"
+    try:
+        response = requests.post(url, json=data)
+        return response.json()
+    except:
+        print("Network exception occurred")
+
