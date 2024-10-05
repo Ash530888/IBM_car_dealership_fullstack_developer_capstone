@@ -125,13 +125,20 @@ def get_dealer_details(request, id):
         return JsonResponse({"status":400,"message":"Bad Request"})
 
 # view to submit a review
+@csrf_exempt
 def add_review(request):
+    print("Received a request to add a review")
+    print(request.user.is_anonymous)
     if request.user.is_anonymous == False:
+        print("is logged in")
         data = json.loads(request.body)
         try:
             response = post_review(data)
+            print("add_review")
+            print("successfully added review")
             return JsonResponse({"status": 200})
         except:
+            print("un-successfully added review")
             return JsonResponse({"status":401,"message":"Error in posting review"})
     else:
         return JsonResponse({"status":400, "message":"Must be logged in to post review"})

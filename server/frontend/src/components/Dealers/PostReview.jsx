@@ -48,6 +48,8 @@ const PostReview = () => {
     });
 
     console.log(jsoninput);
+    console.log("Review URL:", review_url);
+
     const res = await fetch(review_url, {
       method: "POST",
       headers: {
