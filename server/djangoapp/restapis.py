@@ -16,18 +16,18 @@ sentiment_analyzer_url = os.getenv(
 # Python keyword arguments representing all URL parameters to be associated with the get call.
 # returns the response, if there is one
 def get_request(endpoint, **kwargs):
-    param = ""
+    params = ""
     if(kwargs):
         # these are all the params that need to be added to the endpoint to make the request
         for key, value in kwargs.items():
             params=params+key+"="+value+"&"
-
-    request_url = backend+endpoint+"?"+params
+    
+    request_url = backend_url+endpoint+"?"+params
 
     print("GET from {} ".format(request_url))
     try:
         # Call get method of requests library with URL and parameters
-        response = request.get(request_url)
+        response = requests.get(request_url)
         return response.json() # returns the json and not the whole thing including status
     except:
         # If any error occurs

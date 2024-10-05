@@ -104,21 +104,22 @@ def get_dealerships(request, state="All"):
 # view to render the reviews of a dealer
 def get_dealer_reviews(request,dealer_id):
     if(dealer_id):
-        reviews = get_request("/fetchReviews/dealer", dealer_id=str(dealer_id))
-        if(reviews.status() == 200):
-            # for each review, add sentiment attribute
-            for review in reviews:
-                review["sentiment"] = analyze_review_sentiments(review["review"])["sentiment"]
-            return JsonResponse({"status":200,"reviews":reviews})
-        else:
-            return JsonResponse({"status":dealer_reviews.status(),"message":"get request failed"})
+        request_url = "/fetchReviews/dealer/"+str(dealer_id)
+        reviews = get_request(request_url)
+        
+        # for each review, add sentiment attribute
+        for review in reviews:
+            review["sentiment"] = analyze_review_sentiments(review["review"])["sentiment"]
+        return JsonResponse({"status":200,"reviews":reviews})
+        
     else:
         return JsonResponse({"status":400,"message":"Bad Request"})
 
 # view to render the dealer details
-def get_dealer_details(request, dealer_id):
-    if(dealer_id):
-        dealer_details = get_request("/fetchDealer", id=str(dealer_id))
+def get_dealer_details(request, id):
+    if(id):
+        request_url = "/fetchDealer/"+str(id)
+        dealer_details = get_request(request_url)
         return JsonResponse({"status": 200, "dealer":dealer_details})
     else:
         return JsonResponse({"status":400,"message":"Bad Request"})
