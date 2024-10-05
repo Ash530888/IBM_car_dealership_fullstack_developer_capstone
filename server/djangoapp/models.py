@@ -48,6 +48,4 @@ class CarModel(models.Model):
     # Other fields as needed
 
     def __str__(self):
-        print("name: "+self.name+"\n dealer: "+self.dealer_id+"\n type: "+self.type)
-        print("Car Make:")
-        print(self.car_make.name)
+        return "name: "+self.name+"\n type: "+self.type+"\nCar Make:"+self.car_make.name
