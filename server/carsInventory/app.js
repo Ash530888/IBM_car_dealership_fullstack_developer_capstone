@@ -57,7 +57,7 @@ app.get('/carsbymake/:id/:make', async (req, res) => {
 });
 
 // GET cars by dealer ID & model
-app.get('/carsbymake/:id/:model', async (req, res) => {
+app.get('/carsbymodel/:id/:model', async (req, res) => {
     try{
         const documents = await Cars.find({dealer_id: req.params.id,
                                             model: req.params.model});

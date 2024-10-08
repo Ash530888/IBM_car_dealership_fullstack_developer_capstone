@@ -108,8 +108,11 @@ def get_dealer_reviews(request,dealer_id):
         reviews = get_request(request_url)
         
         # for each review, add sentiment attribute
+        # commented out because lost access to microservice
+        '''
         for review in reviews:
             review["sentiment"] = analyze_review_sentiments(review["review"])["sentiment"]
+        '''
         return JsonResponse({"status":200,"reviews":reviews})
         
     else:
@@ -147,6 +150,7 @@ def add_review(request):
 # view to render the inventory details
 def get_inventory(request, dealer_id):
     data = request.GET
+    print(data)
     if(dealer_id):
 
         if 'year' in data:
