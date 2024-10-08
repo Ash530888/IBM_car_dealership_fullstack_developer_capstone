@@ -74,7 +74,7 @@ const SearchCars = () => {
     }
 
     if(yearIdx !== 0) {
-      let curryear = document.getElementById('year').value;
+      let curryear = parseInt(document.getElementById('year').value);
       cars = cars.filter(car => car.year >= curryear);
       if(cars.length !== 0) {
         document.getElementById('make').value = cars[0].make;
